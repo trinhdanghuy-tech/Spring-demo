@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Product Page</title>
+    <title>Manager User  Page</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -100,13 +101,51 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1>Manager Products</h1>
+                <h1>Manager Users</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="/admin">Dasboard</a></li>
-                    <li class="breadcrumb-item active">Products</li>
+                    <li class="breadcrumb-item active">Users</li>
                 </ol>
-                <div>
-                    table products
+                <div class="mt-5">
+                        <div class="col-md-6 col-12 mx-auto">
+                            <h3>Create a user</h3>
+                            <br>
+                            <form:form modelAttribute="newUser" method="post" action="/admin/user/create">
+                                <form class="row g-3">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label for="inputEmail4" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="inputEmail4" placeholder="h@gmail.com">
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="inputPassword4" class="form-label">Password</label>
+                                            <input type="password" class="form-control" id="inputPassword4">
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputAddress" class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                    </div>
+                                    <div class="col-12">
+                                        <label for="inputPhone" class="form-label">Phone</label>
+                                        <input type="text" class="form-control" id="inputPhone" placeholder="123456789">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label">Default file input example</label>
+                                        <input class="form-control" type="file" id="formFile">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="inputState" class="form-label">State</label>
+                                        <select id="inputState" class="form-select">
+                                            <option selected>Choose...</option>
+                                            <option>Admin</option>
+                                            <option>User</option>
+                                        </select>
+                                    </div>
+                                </form>
+                                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                            </form:form>
+                        </div
                 </div>
             </div>
         </main>

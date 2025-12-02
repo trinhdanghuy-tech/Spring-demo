@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Product Page</title>
+    <title>Manager User  Page</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -100,13 +100,44 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1>Manager Products</h1>
+                <h1>Manager Users</h1>a
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="/admin">Dasboard</a></li>
-                    <li class="breadcrumb-item active">Products</li>
+                    <li class="breadcrumb-item active">Users</li>
                 </ol>
-                <div>
-                    table products
+                <div class="row">
+                    <div class="col-12 mx-auto">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>Table Users</h2>
+                            <a class="btn btn-primary" href="/admin/user/create" role="button">Create User</a>
+                        </div>
+                        <div class="cross"></div>
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach items="${users1}" var="user">
+                                <tr>
+                                    <th scope="row">${user.id}</th>
+                                    <td>${user.fullName}</td>
+                                    <td>${user.email}</td>
+                                    <td>
+                                        <a href="/admin/user/${user.id}" class="btn btn-success btn-sm">View</a>
+                                        <a href="/admin/user/update_user/${user.id}" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="/admin/user/delete_user/${user.id}" class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </main>

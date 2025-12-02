@@ -31,7 +31,7 @@ public class UserController {
     public String getUserPage(Model model) {
         List<User> users = this.userService.getAllUsers();
         model.addAttribute("users1", users);
-        return "admin/user/tableusers";
+        return "admin/user/show";
     }
 
     /*Show detail user*/
@@ -40,7 +40,7 @@ public class UserController {
         User user = this.userService.getUserById(id);
         model.addAttribute("id", id);
         model.addAttribute("user", user);
-        return "admin/user/show";
+        return "admin/user/detail";
     }
 
     /* Show create user page*/

@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Product Page</title>
+    <title>Manager User  Page</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
@@ -100,13 +101,41 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1>Manager Products</h1>
+                <h1>Manager Users</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="/admin">Dasboard</a></li>
-                    <li class="breadcrumb-item active">Products</li>
+                    <li class="breadcrumb-item active">Users</li>
                 </ol>
-                <div>
-                    table products
+                <div class="mt-5">
+                    <div class="row">
+                        <div class="col-md-6 col-12 mx-auto">
+                            <h3>Update User</h3>
+                            <br>
+                            <form:form modelAttribute="newUser" method="post" action="/admin/user/update_user">
+                                <div class="mb-3" style="display: none">
+                                    <label>ID</label>
+                                    <input type="text" name="id" value="${newUser.id}" class="form-control"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label>Email</label>
+                                    <form:input path="email" class="form-control" disabled="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label>Full Name</label>
+                                    <form:input path="fullName" class="form-control"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label>Address</label>
+                                    <form:input path="address" class="form-control"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label>Phone</label>
+                                    <form:input path="phone" class="form-control"/>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form:form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
