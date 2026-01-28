@@ -100,7 +100,7 @@
     <div id="layoutSidenav_content">
         <main>
             <div class="container-fluid px-4">
-                <h1>Manager Users</h1>a
+                <h1>Manager Users</h1>
                 <ol class="breadcrumb mb-4">
                     <li class="breadcrumb-item"><a href="/admin">Dasboard</a></li>
                     <li class="breadcrumb-item active">Users</li>

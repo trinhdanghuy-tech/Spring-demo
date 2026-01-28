@@ -11,6 +11,18 @@
     <meta name="author" content="" />
     <title>Manager User  Page</title>
     <link href="/css/styles.css" rel="stylesheet" />
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            const avatarFile = $("#avatarFile");
+            avatarFile.change(function (e) {
+                const imgURL = URL.createObjectURL(e.target.files[0]);
+                $("#avatarPreview").attr("src", imgURL);
+                $("#avatarPreview").css({ "display": "block" });
+            });
+        });
+    </script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
@@ -107,45 +119,56 @@
                     <li class="breadcrumb-item active">Users</li>
                 </ol>
                 <div class="mt-5">
+                    <div class="row">
                         <div class="col-md-6 col-12 mx-auto">
                             <h3>Create a user</h3>
                             <br>
-                            <form:form modelAttribute="newUser" method="post" action="/admin/user/create">
-                                <form class="row g-3">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <label for="inputEmail4" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="inputEmail4" placeholder="h@gmail.com">
-                                        </div>
-                                        <div class="col-6">
-                                            <label for="inputPassword4" class="form-label">Password</label>
-                                            <input type="password" class="form-control" id="inputPassword4">
-                                        </div>
+                            <form:form modelAttribute="newUser" method="post" action="/admin/user/create"
+                                       class="row g-3" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <label for="inputEmail4" class="form-label">Email</label>
+                                        <form:input path="email" type="email" class="form-control" id="inputEmail4" placeholder="h@gmail.com"/>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
+                                        <label for="inputPassword4" class="form-label">Password</label>
+                                        <form:password path="password" class="form-control" id="inputPassword4"/>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="col-5">
                                         <label for="inputAddress" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+                                        <form:input path="address" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
                                     </div>
-                                    <div class="col-12">
-                                        <label for="inputPhone" class="form-label">Phone</label>
-                                        <input type="text" class="form-control" id="inputPhone" placeholder="123456789">
+                                    <div class="col-5">
+                                        <label for="inputFullName" class="form-label">FullName</label>
+                                        <form:input path="fullName" class="form-control" id="inputFullName" placeholder="Conor McGregor"/>
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="formFile" class="form-label">Default file input example</label>
-                                        <input class="form-control" type="file" id="formFile">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="inputState" class="form-label">State</label>
-                                        <select id="inputState" class="form-select">
-                                            <option selected>Choose...</option>
-                                            <option>Admin</option>
-                                            <option>User</option>
-                                        </select>
-                                    </div>
-                                </form>
-                                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                </div>
+                                <div class="col-12">
+                                    <label for="inputPhone" class="form-label">Phone</label>
+                                    <form:input path="phone" class="form-control" id="inputPhone" placeholder="123456789"/>
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label for="avatarFile" class="form-label">Avatar: </label>
+                                    <input class="form-control" type="file" id="avatarFile" name="huyhuyFile" accept=".jpg, .jpeg, .png">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <img style="max-height: 250px; display: none" alt="avatar preview" id="avatarPreview">
+                                </div>
+                                <div class="mb-3 col-12 col-md-6">
+                                    <label class="form-label">Role: </label>
+                                    <form:select class="form-select" path="role.name">
+                                        <form:option value="ADMIN">Admin</form:option>
+                                        <form:option value="USER">User</form:option>
+                                    </form:select>
+                                </div>
+                                <div class="col-12 mb-5">
+                                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                                </div>
                             </form:form>
-                        </div
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>

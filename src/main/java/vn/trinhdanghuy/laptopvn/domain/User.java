@@ -26,6 +26,13 @@ public class User {
     private List<Oder> orders;
 
 
+    public List<Oder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Oder> orders) {
+        this.orders = orders;
+    }
 
     public long getId() {
         return id;
@@ -83,6 +90,12 @@ public class User {
         this.avatar = avatar;
     }
 
+    public Role getRole() { return role; }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -93,6 +106,8 @@ public class User {
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 ", avatar='" + avatar + '\'' +
+                ", role=" + role +
+                ", orders=" + orders +
                 '}';
     }
 }
