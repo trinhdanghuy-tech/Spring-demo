@@ -2,6 +2,9 @@ package vn.trinhdanghuy.laptopvn.domain;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -11,10 +14,23 @@ public class User {
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private long id;
+
+    @NotEmpty(message = "Email cannot be empty")
+    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
+
+    @NotEmpty(message = "Password cannot be empty")
+    @Size(min = 6, message = "Password must have at least 6 characters")
     private String password;
+
+    @NotEmpty(message = "Full name cannot be empty")
+    @Size(min = 2, message = "Full name must have at least 2 characters")
     private String fullName;
+
+    @NotEmpty(message = "Address cannot be empty")
     private String address;
+
+    @NotEmpty(message = "Phone number cannot be empty")
     private String phone;
     private String avatar;
 

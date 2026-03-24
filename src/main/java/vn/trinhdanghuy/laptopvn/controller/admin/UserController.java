@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import jakarta.validation.Valid;
 
 import vn.trinhdanghuy.laptopvn.domain.User;
 import vn.trinhdanghuy.laptopvn.services.UploadService;
@@ -47,8 +48,8 @@ public class UserController {
     }
 
     /* Show detail user */
-    @RequestMapping(value = "/admin/user/{id}")
-    public String getUserDetailPage(Model model, @PathVariable long id) {
+    @RequestMapping(value = "/admin/user/{id:\\d+}")
+    public String getUserDetailPage(Model model, @PathVariable("id") long id) {
         User user = this.userService.getUserById(id);
         model.addAttribute("id", id);
         model.addAttribute("user", user);
@@ -64,7 +65,7 @@ public class UserController {
 
     @PostMapping("/admin/user/create")
     public String createUserPage(Model model,
-            @ModelAttribute("newUser") User hoidanit,
+            @ModelAttribute("newUser") @Valid User hoidanit,
             BindingResult bindingResult,
             @RequestParam("huyhuyFile") MultipartFile file) {
         if (bindingResult.hasErrors()) {
@@ -91,11 +92,16 @@ public class UserController {
     }
 
     /* Update user */
-    @RequestMapping(value = "/admin/user/update_user/{id}")
-    public String updateUserPage(Model model, @PathVariable long id) {
+    @GetMapping(value = "/admin/user/update_user/{id}")
+    public String updateUserPage(Model model, @PathVariable("id") long id) {
         User currentUser = this.userService.getUserById(id);
+
+        if (currentUser == null) {
+            return "redirect:/admin/user"; // hoặc 404
+        }
+
         model.addAttribute("newUser", currentUser);
-        return "/admin/user/update_user";
+        return "admin/user/update_user";
     }
 
     @PostMapping("/admin/user/update_user")
@@ -112,7 +118,7 @@ public class UserController {
 
     // Hiển thị trang confirm delete
     @GetMapping("/admin/user/delete_user/{id}")
-    public String getDeleteUserPage(@PathVariable long id, Model model) {
+    public String getDeleteUserPage(@PathVariable("id") long id, Model model) {
         model.addAttribute("id", id);
         model.addAttribute("newUser", new User());
         return "admin/user/delete_user"; // JSP confirm delete

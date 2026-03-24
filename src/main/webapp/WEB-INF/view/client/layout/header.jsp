@@ -23,7 +23,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
         <div class="container py-2">
-            <a class="navbar-brand d-flex align-items-center" href="/">
+            <a class="navbar-brand d-flex align-items-center" href="/home">
                 <div class="bg-primary text-white rounded p-2 me-2 shadow-sm" style="background-color: var(--accent-color)!important;">
                     <i class="bi bi-laptop"></i>
                 </div>

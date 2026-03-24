@@ -110,15 +110,19 @@
                     <div class="row">
                         <div class="col-md-6 col-12 mx-auto">
                             <h3>Update User</h3>
+                            <c:if test="${not empty error}">
+                                <div class="alert alert-warning">${error}</div>
+                            </c:if>
                             <br>
                             <form:form modelAttribute="newUser" method="post" action="/admin/user/update_user">
                                 <div class="mb-3" style="display: none">
                                     <label>ID</label>
                                     <input type="text" name="id" value="${newUser.id}" class="form-control"/>
+                                    <input type="hidden" name="password" value="${newUser.password}" />
                                 </div>
                                 <div class="mb-3">
                                     <label>Email</label>
-                                    <form:input path="email" class="form-control" disabled="true"/>
+                                    <form:input path="email" class="form-control" readonly="true"/>
                                 </div>
                                 <div class="mb-3">
                                     <label>Full Name</label>

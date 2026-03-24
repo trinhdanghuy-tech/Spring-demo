@@ -129,25 +129,30 @@
                                     <div class="col-6">
                                         <label for="inputEmail4" class="form-label">Email</label>
                                         <form:input path="email" type="email" class="form-control" id="inputEmail4" placeholder="h@gmail.com"/>
+                                        <form:errors path="email" cssClass="text-danger" />
                                     </div>
                                     <div class="col-6">
                                         <label for="inputPassword4" class="form-label">Password</label>
                                         <form:password path="password" class="form-control" id="inputPassword4"/>
+                                        <form:errors path="password" cssClass="text-danger" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="col-5">
                                         <label for="inputAddress" class="form-label">Address</label>
                                         <form:input path="address" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
+                                        <form:errors path="address" cssClass="text-danger" />
                                     </div>
                                     <div class="col-5">
                                         <label for="inputFullName" class="form-label">FullName</label>
                                         <form:input path="fullName" class="form-control" id="inputFullName" placeholder="Conor McGregor"/>
+                                        <form:errors path="fullName" cssClass="text-danger" />
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <label for="inputPhone" class="form-label">Phone</label>
                                     <form:input path="phone" class="form-control" id="inputPhone" placeholder="123456789"/>
+                                    <form:errors path="phone" cssClass="text-danger" />
                                 </div>
                                 <div class="mb-3 col-12 col-md-6">
                                     <label for="avatarFile" class="form-label">Avatar: </label>

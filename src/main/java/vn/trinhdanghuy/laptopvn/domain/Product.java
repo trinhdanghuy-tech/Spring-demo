@@ -1,6 +1,10 @@
 package vn.trinhdanghuy.laptopvn.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -10,14 +14,33 @@ public class Product {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotEmpty(message = "Product name cannot be empty")
+    @NotNull
     private String name;
+
+    @DecimalMin(value = "0.0", inclusive = false, message = "Price must be greater than 0")
     private double price;
+
     private String image;
+
+    @NotEmpty(message = "Detail description cannot be empty")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String detailDesc;
+
+    @NotEmpty(message = "Short description cannot be empty")
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String shortDesc;
+
+    @Min(value = 1, message = "Quantity must be greater than or equal to 1")
     private long quantity;
+
     private long sold;
+
+    @NotEmpty(message = "Factory cannot be empty")
     private String factory;
+
+    @NotEmpty(message = "Target cannot be empty")
     private String target;
 
 
