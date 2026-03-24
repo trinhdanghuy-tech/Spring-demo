@@ -118,6 +118,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Role</th>
                                 <th scope="col">Action</th>
                             </tr>
                             </thead>
@@ -127,6 +128,16 @@
                                     <th scope="row">${user.id}</th>
                                     <td>${user.fullName}</td>
                                     <td>${user.email}</td>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${not empty user.role}">
+                                                <span class="badge bg-primary">${user.role.name}</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="badge bg-secondary">N/A</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </td>
                                     <td>
                                         <a href="/admin/user/${user.id}" class="btn btn-success btn-sm">View</a>
                                         <a href="/admin/user/update_user/${user.id}" class="btn btn-warning btn-sm">Edit</a>

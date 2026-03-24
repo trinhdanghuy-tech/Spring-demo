@@ -2,7 +2,6 @@ package vn.trinhdanghuy.laptopvn.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import vn.trinhdanghuy.laptopvn.domain.Role;
 import vn.trinhdanghuy.laptopvn.domain.User;
 
 import java.util.List;
@@ -15,11 +14,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     List<User> findAll();
 
-    User findById(long id);
+    @org.springframework.data.jpa.repository.Query("SELECT u FROM User u WHERE u.id = :id")
+    User findUserById(@org.springframework.data.repository.query.Param("id") long id);
 
     void deleteById(long id);
-
-    @org.springframework.data.jpa.repository.Query("SELECT r FROM Role r WHERE r.name = :name")
-    vn.trinhdanghuy.laptopvn.domain.Role findRoleByName(
-            @org.springframework.data.repository.query.Param("name") String name);
 }

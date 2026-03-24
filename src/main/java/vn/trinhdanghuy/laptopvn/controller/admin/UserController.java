@@ -1,5 +1,7 @@
 package vn.trinhdanghuy.laptopvn.controller.admin;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,10 +19,14 @@ public class UserController {
 
     private final UserService userService;
     private final UploadService uploadService;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserService userService, UploadService uploadService) {
+    public UserController(UserService userService,
+            UploadService uploadService,
+            PasswordEncoder passwordEncoder) {
         this.userService = userService;
         this.uploadService = uploadService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     /* Trang chinh */
@@ -66,8 +72,9 @@ public class UserController {
         }
 
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        String hashedPassword = passwordEncoder.encode(hoidanit.getPassword());
         hoidanit.setAvatar(avatar);
-
+        hoidanit.setPassword(hashedPassword);
         try {
             this.userService.handleSaveUser(hoidanit);
         } catch (Exception e) {
@@ -80,7 +87,6 @@ public class UserController {
             model.addAttribute("error", "Error creating user: " + e.getMessage());
             return "admin/user/create";
         }
-
         return "redirect:/admin/user";
     }
 

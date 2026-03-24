@@ -2,6 +2,7 @@ package vn.trinhdanghuy.laptopvn.services;
 
 import org.springframework.stereotype.Service;
 import vn.trinhdanghuy.laptopvn.domain.User;
+import vn.trinhdanghuy.laptopvn.repository.RoleRepository;
 import vn.trinhdanghuy.laptopvn.repository.UserRepository;
 
 import java.util.List;
@@ -10,9 +11,11 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
     }
 
     public String handleHello() {
@@ -29,7 +32,7 @@ public class UserService {
 
     public User handleSaveUser(User user) {
         if (user.getRole() != null) {
-            vn.trinhdanghuy.laptopvn.domain.Role role = this.userRepository.findRoleByName(user.getRole().getName());
+            vn.trinhdanghuy.laptopvn.domain.Role role = this.roleRepository.findByName(user.getRole().getName());
             if (role != null) {
                 user.setRole(role);
             }
@@ -38,7 +41,7 @@ public class UserService {
     }
 
     public User getUserById(long id) {
-        return this.userRepository.findById(id);
+        return this.userRepository.findUserById(id);
     }
 
     public void deleteUserById(long id) {
