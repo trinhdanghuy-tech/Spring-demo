@@ -208,6 +208,14 @@
                     </div>
                 </c:if>
 
+                <!-- Logout message -->
+                <c:if test="${param.logout != null}">
+                    <div class="alert alert-info py-2 px-3 rounded-3 d-flex align-items-center gap-2 mb-3" style="font-size: 0.9rem;">
+                        <i class="bi bi-info-circle"></i>
+                        Bạn đã đăng xuất thành công.
+                    </div>
+                </c:if>
+
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="remember">

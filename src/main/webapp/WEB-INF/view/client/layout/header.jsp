@@ -47,7 +47,28 @@
                             </span>
                         </c:if>
                     </a>
-                    <a href="/login" class="btn btn-primary rounded-pill px-4 text-white hover-up shadow-sm" style="background-color: var(--primary-color); border:none;">Đăng nhập</a>
+                    <c:choose>
+                        <c:when test="${not empty pageContext.request.userPrincipal}">
+                            <div class="dropdown">
+                                <a class="btn btn-outline-secondary rounded-pill px-4 dropdown-toggle shadow-sm" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle me-1"></i>${pageContext.request.userPrincipal.name}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3">
+                                    <li><a class="dropdown-item py-2" href="#"><i class="bi bi-person me-2"></i>Tài khoản</a></li>
+                                    <li><a class="dropdown-item py-2" href="#"><i class="bi bi-bag me-2"></i>Đơn hàng</a></li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form action="/logout" method="post">
+                                            <button type="submit" class="dropdown-item py-2 text-danger"><i class="bi bi-box-arrow-right me-2"></i>Đăng xuất</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </div>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="/login" class="btn btn-primary rounded-pill px-4 text-white hover-up shadow-sm" style="background-color: var(--primary-color); border:none;">Đăng nhập</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>
