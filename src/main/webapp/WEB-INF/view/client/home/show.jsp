@@ -96,7 +96,7 @@
                             bật</h6>
                         <h2 class="fw-bold mb-0" style="letter-spacing: -0.5px;">Laptop Bán Chạy Nhất</h2>
                     </div>
-                    <a href="#" class="text-decoration-none fw-semibold d-none d-md-block"
+                    <a href="/products" class="text-decoration-none fw-semibold d-none d-md-block"
                         style="color: var(--primary-color);">Xem tất cả <i class="bi bi-arrow-right ms-1"></i></a>
                 </div>
 
@@ -125,9 +125,13 @@
                                         <hr class="text-muted opacity-25">
                                         <div class="d-flex justify-content-between align-items-center mt-3">
                                             <div class="product-price"><fmt:formatNumber type="number" value="${product.price}" />₫</div>
-                                            <button class="cart-btn" title="Thêm vào giỏ">
-                                                <i class="bi bi-cart-plus fs-5"></i>
-                                            </button>
+                                            <form action="/cart/add" method="post">
+                                                <input type="hidden" name="productId" value="${product.id}" />
+                                                <input type="hidden" name="quantity" value="1" />
+                                                <button type="submit" class="cart-btn" title="Thêm vào giỏ">
+                                                    <i class="bi bi-cart-plus fs-5"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -137,7 +141,7 @@
                 </div>
 
                 <div class="text-center d-md-none mt-4">
-                    <a href="#" class="btn btn-outline-primary rounded-pill px-4">Xem tất cả sản phẩm</a>
+                    <a href="/products" class="btn btn-outline-primary rounded-pill px-4">Xem tất cả sản phẩm</a>
                 </div>
             </div>
         </section>

@@ -35,15 +35,17 @@
             <div class="collapse navbar-collapse" id="navbarMain">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" href="/">Trang chủ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Sản phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/products">Sản phẩm</a></li>
                 </ul>
                 <div class="d-flex align-items-center gap-4">
-                    <a href="#" class="text-dark position-relative text-decoration-none">
+                    <a href="/cart" class="text-dark position-relative text-decoration-none">
                         <i class="bi bi-cart3 fs-5"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow-sm border border-2 border-white">
-                            3
-                            <span class="visually-hidden">Sản phẩm trong giỏ</span>
-                        </span>
+                        <c:if test="${sessionScope.cartTotal != null && sessionScope.cartTotal > 0}">
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger shadow-sm border border-2 border-white">
+                                ${sessionScope.cartTotal}
+                                <span class="visually-hidden">Sản phẩm trong giỏ</span>
+                            </span>
+                        </c:if>
                     </a>
                     <a href="#" class="btn btn-primary rounded-pill px-4 text-white hover-up shadow-sm" style="background-color: var(--primary-color); border:none;">Đăng nhập</a>
                 </div>
