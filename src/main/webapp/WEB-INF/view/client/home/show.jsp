@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
         <jsp:include page="../layout/header.jsp" />
 
         <!-- Hero Section -->
@@ -100,142 +101,39 @@
                 </div>
 
                 <div class="row g-4 mb-5">
-                    <!-- Data from backend: c:forEach logic -->
-                    <!-- <c:forEach var="product" items="\${products}"> ... </c:forEach> -->
-
-                    <!-- Example Product 1 -->
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="product-card">
-                            <div class="position-absolute top-0 end-0 p-3 z-1">
-                                <span class="badge bg-danger px-3 py-2 rounded-pill shadow-sm">Mới nhất</span>
-                            </div>
-                            <div class="product-img-wrapper">
-                                <img src="/images/product/macbook.jpg"
-                                    class="product-img" alt="MacBook">
-                            </div>
-                            <div class="product-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="text-muted small fw-semibold">Apple</span>
-                                    <div class="text-warning small"><i class="bi bi-star-fill"></i> 4.9 (120)</div>
-                                </div>
-                                <h3 class="product-title"><a href="/product/1"
-                                        class="text-decoration-none text-dark">MacBook Pro 14" M2 Pro 2023 (10-core CPU,
-                                        16-core GPU)</a></h3>
-                                <div class="product-specs">
-                                    <span><i class="bi bi-cpu"></i>M2 Pro</span>
-                                    <span><i class="bi bi-memory"></i>16GB RAM</span>
-                                    <span><i class="bi bi-device-hdd"></i>512GB SSD</span>
-                                </div>
-                                <hr class="text-muted opacity-25">
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div class="product-price">48.990.000₫</div>
-                                    <button class="cart-btn" title="Thêm vào giỏ">
-                                        <i class="bi bi-cart-plus fs-5"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Example Product 2 -->
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="product-card">
-                            <div class="product-img-wrapper">
-                                <img src="/images/product/dellxps.jpg"
-                                    class="product-img" alt="Dell XPS">
-                            </div>
-                            <div class="product-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="text-muted small fw-semibold">Dell</span>
-                                    <div class="text-warning small"><i class="bi bi-star-fill"></i> 4.8 (85)</div>
-                                </div>
-                                <h3 class="product-title"><a href="/product/2"
-                                        class="text-decoration-none text-dark">Dell XPS 13 Plus 9320 Màn OLED Siêu
-                                        Phẩm</a></h3>
-                                <div class="product-specs">
-                                    <span><i class="bi bi-cpu"></i>Core i7 1260P</span>
-                                    <span><i class="bi bi-memory"></i>16GB RAM</span>
-                                    <span><i class="bi bi-device-hdd"></i>1TB SSD</span>
-                                </div>
-                                <hr class="text-muted opacity-25">
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div class="product-price">43.590.000₫</div>
-                                    <button class="cart-btn" title="Thêm vào giỏ">
-                                        <i class="bi bi-cart-plus fs-5"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Example Product 3 -->
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="product-card">
-                            <div class="position-absolute top-0 end-0 p-3 z-1">
-                                <span class="badge bg-warning text-dark px-3 py-2 rounded-pill shadow-sm">-15%
-                                    SALE</span>
-                            </div>
-                            <div class="product-img-wrapper">
-                                <img src="/images/product/rog.jpg"
-                                    class="product-img" alt="Asus ROG">
-                            </div>
-                            <div class="product-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="text-muted small fw-semibold">Asus ROG</span>
-                                    <div class="text-warning small"><i class="bi bi-star-fill"></i> 4.7 (200)</div>
-                                </div>
-                                <h3 class="product-title"><a href="/product/3"
-                                        class="text-decoration-none text-dark">Asus ROG Strix G15 Gaming Edition Cực
-                                        Đỉnh</a></h3>
-                                <div class="product-specs">
-                                    <span><i class="bi bi-cpu"></i>Ryzen 7 6800H</span>
-                                    <span><i class="bi bi-gpu-card"></i>RTX 3060</span>
-                                    <span><i class="bi bi-device-hdd"></i>512GB SSD</span>
-                                </div>
-                                <hr class="text-muted opacity-25">
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div>
-                                        <div class="text-decoration-line-through text-muted small">32.990.000₫</div>
-                                        <div class="product-price fs-5">27.990.000₫</div>
+                    <c:forEach var="product" items="${products}" varStatus="status">
+                        <c:if test="${status.index < 4}">
+                            <div class="col-xl-3 col-lg-4 col-md-6">
+                                <div class="product-card">
+                                    <c:if test="${status.index == 0}">
+                                        <div class="position-absolute top-0 end-0 p-3 z-1">
+                                            <span class="badge bg-danger px-3 py-2 rounded-pill shadow-sm">Mới nhất</span>
+                                        </div>
+                                    </c:if>
+                                    <div class="product-img-wrapper">
+                                        <img src="/images/product/${product.image}"
+                                            class="product-img" alt="${product.name}">
                                     </div>
-                                    <button class="cart-btn" title="Thêm vào giỏ">
-                                        <i class="bi bi-cart-plus fs-5"></i>
-                                    </button>
+                                    <div class="product-body">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="text-muted small fw-semibold">${product.factory}</span>
+                                            <div class="text-warning small"><i class="bi bi-star-fill"></i> 4.9</div>
+                                        </div>
+                                        <h3 class="product-title"><a href="/product/${product.id}"
+                                                class="text-decoration-none text-dark">${product.name}</a></h3>
+                                        <p class="text-muted small mb-2" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">${product.shortDesc}</p>
+                                        <hr class="text-muted opacity-25">
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <div class="product-price"><fmt:formatNumber type="number" value="${product.price}" />₫</div>
+                                            <button class="cart-btn" title="Thêm vào giỏ">
+                                                <i class="bi bi-cart-plus fs-5"></i>
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Example Product 4 -->
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="product-card">
-                            <div class="product-img-wrapper" style="background: transparent;">
-                                <img src="/images/product/thinkpad.jpg"
-                                    class="product-img" alt="Lenovo ThinkPad">
-                            </div>
-                            <div class="product-body">
-                                <div class="d-flex justify-content-between align-items-center mb-2">
-                                    <span class="text-muted small fw-semibold">Lenovo</span>
-                                    <div class="text-warning small"><i class="bi bi-star-fill"></i> 4.9 (45)</div>
-                                </div>
-                                <h3 class="product-title"><a href="/product/4"
-                                        class="text-decoration-none text-dark">ThinkPad X1 Carbon Gen 10 Dành Cho Doanh
-                                        Nhân</a></h3>
-                                <div class="product-specs">
-                                    <span><i class="bi bi-cpu"></i>Core i5 1240P</span>
-                                    <span><i class="bi bi-memory"></i>16GB RAM</span>
-                                    <span><i class="bi bi-device-hdd"></i>512GB SSD</span>
-                                </div>
-                                <hr class="text-muted opacity-25">
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <div class="product-price">38.990.000₫</div>
-                                    <button class="cart-btn" title="Thêm vào giỏ">
-                                        <i class="bi bi-cart-plus fs-5"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </c:if>
+                    </c:forEach>
                 </div>
 
                 <div class="text-center d-md-none mt-4">

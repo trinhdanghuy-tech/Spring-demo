@@ -175,6 +175,8 @@
                                         <form:option value="Dell">Dell</form:option>
                                         <form:option value="HP">HP</form:option>
                                         <form:option value="Lenovo">Lenovo</form:option>
+                                        <form:option value="MSI">MSI</form:option>
+                                        <form:option value="Acer">Acer</form:option>
                                     </form:select>
                                     <form:errors path="factory" cssClass="text-danger" />
                                 </div>
