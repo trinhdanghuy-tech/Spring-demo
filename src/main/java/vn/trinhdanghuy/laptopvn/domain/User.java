@@ -1,18 +1,16 @@
 package vn.trinhdanghuy.laptopvn.domain;
 
-
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-
 import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy =  GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @NotEmpty(message = "Email cannot be empty")
@@ -27,10 +25,8 @@ public class User {
     @Size(min = 2, message = "Full name must have at least 2 characters")
     private String fullName;
 
-    @NotEmpty(message = "Address cannot be empty")
     private String address;
 
-    @NotEmpty(message = "Phone number cannot be empty")
     private String phone;
     private String avatar;
 
@@ -40,7 +36,6 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<Oder> orders;
-
 
     public List<Oder> getOrders() {
         return orders;
@@ -106,7 +101,9 @@ public class User {
         this.avatar = avatar;
     }
 
-    public Role getRole() { return role; }
+    public Role getRole() {
+        return role;
+    }
 
     public void setRole(Role role) {
         this.role = role;

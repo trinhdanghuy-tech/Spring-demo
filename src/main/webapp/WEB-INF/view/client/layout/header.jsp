@@ -47,7 +47,7 @@
                             </span>
                         </c:if>
                     </a>
-                    <a href="#" class="btn btn-primary rounded-pill px-4 text-white hover-up shadow-sm" style="background-color: var(--primary-color); border:none;">Đăng nhập</a>
+                    <a href="/login" class="btn btn-primary rounded-pill px-4 text-white hover-up shadow-sm" style="background-color: var(--primary-color); border:none;">Đăng nhập</a>
                 </div>
             </div>
         </div>
