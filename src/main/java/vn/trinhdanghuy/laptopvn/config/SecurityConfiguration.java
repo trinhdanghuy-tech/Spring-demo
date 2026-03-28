@@ -1,16 +1,15 @@
 package vn.trinhdanghuy.laptopvn.config;
 
+import jakarta.servlet.DispatcherType;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import org.springframework.security.web.SecurityFilterChain;
 
 import vn.trinhdanghuy.laptopvn.services.UserService;
@@ -46,15 +45,14 @@ public class SecurityConfiguration {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // Cho phép truy cập không cần đăng nhập
-                        .requestMatchers("/", "/products", "/product/**", "/login", "/register",
-                                "/client/**", "/css/**", "/js/**", "/images/**")
+                        // Allow internal forwards/errors to JSP views, otherwise /login forwards back
+                        // into security.
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE).permitAll()
+                        .requestMatchers("/", "/login", "/register", "/client/**", "/css/**", "/js/**",
+                                "/images/**", "/products/**", "/product/**")
                         .permitAll()
-                        // Trang admin cần đăng nhập với role ADMIN
                         .requestMatchers("/admin/**").hasRole("ADMIN")
-                        // Cart cần đăng nhập
-                        .requestMatchers("/cart/**").hasAnyRole("USER", "ADMIN")
-                        // Còn lại phải đăng nhập
+                        .requestMatchers("/cart", "/cart/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
@@ -64,10 +62,10 @@ public class SecurityConfiguration {
                         .permitAll())
                 .logout(logout -> logout
                         .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login?logout") // Redirect mượt báo hiệu đã logout
-                        .invalidateHttpSession(true) // Xóa session HTTP
-                        .clearAuthentication(true)   // Xóa xác thực cũ
-                        .deleteCookies("JSESSIONID") // Xóa luôn cookie sessionID
+                        .logoutSuccessUrl("/login?logout")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .deleteCookies("JSESSIONID")
                         .permitAll());
         return http.build();
     }

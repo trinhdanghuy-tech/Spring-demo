@@ -187,6 +187,9 @@
                         <input type="password" class="form-control" id="password" name="password" placeholder="Mật khẩu" required>
                         <label for="password"><i class="bi bi-lock me-2"></i>Mật khẩu</label>
                     </div>
+                    <div class="position-absolute top-50 end-0 translate-middle-y">
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                    </div>
                     <span class="input-group-text" onclick="togglePassword()">
                         <i class="bi bi-eye" id="toggleIcon"></i>
                     </span>
