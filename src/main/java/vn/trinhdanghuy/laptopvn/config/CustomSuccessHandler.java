@@ -1,0 +1,59 @@
+package vn.trinhdanghuy.laptopvn.config;
+
+import java.io.IOException;
+import java.util.Map;
+import java.util.HashMap;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
+import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.RedirectStrategy;
+import java.util.Collection;
+import org.springframework.security.core.GrantedAuthority;
+import jakarta.servlet.http.HttpSession;
+import org.springframework.security.web.WebAttributes;
+
+@Component
+public class CustomSuccessHandler implements AuthenticationSuccessHandler {
+    protected String determineTargetUrl(final Authentication authentication) {
+        Map<String, String> roleTargetUrlMap = new HashMap<>();
+        roleTargetUrlMap.put("ROLE_ADMIN", "/admin");
+        roleTargetUrlMap.put("ROLE_USER", "/");
+
+        final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        for (final GrantedAuthority grantedAuthority : authorities) {
+            String authority = grantedAuthority.getAuthority();
+            if (roleTargetUrlMap.containsKey(authority)) {
+                return roleTargetUrlMap.get(authority);
+            }
+        }
+        throw new IllegalStateException();
+    }
+
+    protected void clearAuthenticationAttributes(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) {
+            return;
+        }
+        session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+    }
+
+    private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+
+    @Override
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+            Authentication authentication)
+            throws IOException, ServletException {
+        final String targetUrl = determineTargetUrl(authentication);
+        if (response.isCommitted()) {
+            return;
+        }
+        redirectStrategy.sendRedirect(request, response, targetUrl);
+        clearAuthenticationAttributes(request);
+    }
+}

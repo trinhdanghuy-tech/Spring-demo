@@ -30,6 +30,11 @@ public class SecurityConfiguration {
     }
 
     @Bean
+    public CustomSuccessHandler customSuccessHandler() {
+        return new CustomSuccessHandler();
+    }
+
+    @Bean
     public DaoAuthenticationProvider authProvider(
             PasswordEncoder passwordEncoder,
             UserDetailsService userDetailsService) {
@@ -51,13 +56,14 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/login", "/register", "/client/**", "/css/**", "/js/**",
                                 "/images/**", "/products/**", "/product/**")
                         .permitAll()
+                        // Role admin
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/cart", "/cart/**").hasAnyRole("USER", "ADMIN")
                         .anyRequest().authenticated())
                 .formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login")
-                        .defaultSuccessUrl("/", true)
+                        .successHandler(customSuccessHandler())
                         .failureUrl("/login?error")
                         .permitAll())
                 .logout(logout -> logout
