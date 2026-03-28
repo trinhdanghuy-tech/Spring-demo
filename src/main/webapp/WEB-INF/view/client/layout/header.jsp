@@ -54,6 +54,12 @@
                                     <i class="bi bi-person-circle me-1"></i>${pageContext.request.userPrincipal.name}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3">
+                                    <li class="d-flex align-items-center flex-column" style="min-width: 30px;">
+                                        <img src="https://ui-avatars.com/api/?name=${pageContext.request.userPrincipal.name}&background=random&color=fff" alt="" class="rounded-circle" style="width: 30px; height: 30px;">
+                                    </li>
+                                    <div class="text-center my-3">
+                                        <p class="mb-0"> Xin chào, <b>${pageContext.request.userPrincipal.name}</b></p>
+                                    </div>
                                     <li><a class="dropdown-item py-2" href="#"><i class="bi bi-person me-2"></i>Tài khoản</a></li>
                                     <li><a class="dropdown-item py-2" href="#"><i class="bi bi-bag me-2"></i>Đơn hàng</a></li>
                                     <li><hr class="dropdown-divider"></li>

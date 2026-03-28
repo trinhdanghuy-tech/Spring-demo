@@ -24,4 +24,9 @@ public class HomePageController {
         model.addAttribute("products", products);
         return "client/home/show";
     }
+
+    @GetMapping("/access-denied")
+    public String getAccessDeniedPage() {
+        return "client/auth/access-denied";
+    }
 }

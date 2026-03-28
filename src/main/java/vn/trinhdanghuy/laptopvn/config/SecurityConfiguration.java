@@ -66,6 +66,8 @@ public class SecurityConfiguration {
                         .successHandler(customSuccessHandler())
                         .failureUrl("/login?error")
                         .permitAll())
+                .exceptionHandling(ex -> ex.accessDeniedPage(
+                        "/access-denied"))
                 .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
