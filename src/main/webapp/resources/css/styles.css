@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 /*!
 * Start Bootstrap - SB Admin v7.0.7 (https://startbootstrap.com/template/sb-admin)
 * Copyright 2013-2023 Start Bootstrap
@@ -594,7 +594,7 @@ progress {
     color: #6c757d;
 }
 .blockquote-footer::before {
-    content: "— ";
+    content: "â€”Â ";
 }
 
 .img-fluid {
@@ -10894,6 +10894,7 @@ body {
     background: #000;
     z-index: 1037;
     opacity: 0.5;
+    pointer-events: none;
     transition: opacity 0.3s ease-in-out;
 }
 
