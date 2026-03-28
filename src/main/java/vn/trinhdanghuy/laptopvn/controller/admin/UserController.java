@@ -47,15 +47,6 @@ public class UserController {
         return "admin/user/show";
     }
 
-    /* Show detail user */
-    @RequestMapping(value = "/admin/user/{id:\\d+}")
-    public String getUserDetailPage(Model model, @PathVariable("id") long id) {
-        User user = this.userService.getUserById(id);
-        model.addAttribute("id", id);
-        model.addAttribute("user", user);
-        return "admin/user/detail";
-    }
-
     /* Show create user page */
     @GetMapping("/admin/user/create")
     public String getCreateUserPage(Model model) {

@@ -139,7 +139,6 @@
                                         </c:choose>
                                     </td>
                                     <td>
-                                        <a href="/admin/user/${user.id}" class="btn btn-success btn-sm">View</a>
                                         <a href="/admin/user/update_user/${user.id}" class="btn btn-warning btn-sm">Edit</a>
                                         <a href="/admin/user/delete_user/${user.id}" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
