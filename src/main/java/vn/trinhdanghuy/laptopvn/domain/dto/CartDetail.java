@@ -1,6 +1,9 @@
 package vn.trinhdanghuy.laptopvn.domain.dto;
 
-public class CartDetail {
+import java.io.Serializable;
+
+public class CartDetail implements Serializable {
+    private static final long serialVersionUID = 1L;
     private long productId;
     private String name;
     private double price;
@@ -36,3 +39,4 @@ public class CartDetail {
         return this.price * this.quantity;
     }
 }
+

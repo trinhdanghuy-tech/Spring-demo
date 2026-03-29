@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import java.net.URI;
+import java.net.URISyntaxException;
 import vn.trinhdanghuy.laptopvn.domain.Product;
 import vn.trinhdanghuy.laptopvn.domain.dto.Cart;
 import vn.trinhdanghuy.laptopvn.domain.dto.CartDetail;
@@ -24,8 +26,8 @@ public class CartController {
 
     @PostMapping("/cart/add")
     public String addToCart(@RequestParam("productId") long productId,
-                            @RequestParam(value = "quantity", defaultValue = "1") long quantity,
-                            HttpServletRequest request) {
+            @RequestParam(value = "quantity", defaultValue = "1") long quantity,
+            HttpServletRequest request) {
         HttpSession session = request.getSession();
 
         Product product = this.productService.getProductById(productId);
@@ -41,24 +43,35 @@ public class CartController {
 
         // Thêm sản phẩm vào giỏ
         CartDetail cartDetail = new CartDetail(
-            product.getId(),
-            product.getName(),
-            product.getPrice(),
-            quantity,
-            product.getImage()
-        );
+                product.getId(),
+                product.getName(),
+                product.getPrice(),
+                quantity,
+                product.getImage());
         cart.addItem(cartDetail);
 
         // Lưu lại vào session
         session.setAttribute("cart", cart);
         session.setAttribute("cartTotal", cart.getTotalQuantity());
 
-        // Quay lại trang trước đó
         String referer = request.getHeader("Referer");
-        if (referer != null) {
-            return "redirect:" + referer;
+        if (referer != null && !referer.isBlank()) {
+            try {
+                URI refererUri = new URI(referer);
+                String redirectPath = refererUri.getPath();
+                String query = refererUri.getQuery();
+
+                if (redirectPath != null && !redirectPath.isBlank() && !"/cart/add".equals(redirectPath)) {
+                    if (query != null && !query.isBlank()) {
+                        redirectPath += "?" + query;
+                    }
+                    return "redirect:" + redirectPath;
+                }
+            } catch (URISyntaxException ignored) {
+                // Fallback to cart page when Referer is malformed.
+            }
         }
-        return "redirect:/";
+        return "redirect:/cart";
     }
 
     @GetMapping("/cart")
@@ -75,7 +88,7 @@ public class CartController {
 
     @PostMapping("/cart/remove")
     public String removeFromCart(@RequestParam("productId") long productId,
-                                 HttpServletRequest request) {
+            HttpServletRequest request) {
         HttpSession session = request.getSession();
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart != null) {

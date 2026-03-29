@@ -1,9 +1,11 @@
 package vn.trinhdanghuy.laptopvn.domain.dto;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Cart {
+public class Cart implements Serializable {
+    private static final long serialVersionUID = 1L;
     private List<CartDetail> items = new ArrayList<>();
 
     public List<CartDetail> getItems() { return items; }
@@ -39,3 +41,4 @@ public class Cart {
         return total;
     }
 }
+
