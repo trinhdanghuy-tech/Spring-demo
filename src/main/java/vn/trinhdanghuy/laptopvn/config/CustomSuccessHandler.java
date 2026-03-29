@@ -1,22 +1,23 @@
 package vn.trinhdanghuy.laptopvn.config;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.stereotype.Component;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
-import java.util.Collection;
-import org.springframework.security.core.GrantedAuthority;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.security.web.WebAttributes;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
 
 @Component
 public class CustomSuccessHandler implements AuthenticationSuccessHandler {
@@ -28,11 +29,15 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for (final GrantedAuthority grantedAuthority : authorities) {
             String authority = grantedAuthority.getAuthority();
+            if (authority == null) {
+                continue;
+            }
+            authority = authority.trim().toUpperCase(Locale.ROOT);
             if (roleTargetUrlMap.containsKey(authority)) {
                 return roleTargetUrlMap.get(authority);
             }
         }
-        throw new IllegalStateException();
+        return "/";
     }
 
     protected void clearAuthenticationAttributes(HttpServletRequest request) {

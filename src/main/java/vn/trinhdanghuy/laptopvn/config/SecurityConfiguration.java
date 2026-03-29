@@ -50,10 +50,11 @@ public class SecurityConfiguration {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        // Allow internal forwards/errors to JSP views, otherwise /login forwards back
+                        // Allow internal forwards/errors t o JSP views, otherwise /login forwards back
                         // into security.
-                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE).permitAll()
-                        .requestMatchers("/", "/login", "/register", "/client/**", "/css/**", "/js/**",
+                        .dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.INCLUDE, DispatcherType.ERROR)
+                        .permitAll()
+                        .requestMatchers("/", "/login", "/register", "/error", "/client/**", "/css/**", "/js/**",
                                 "/images/**", "/products/**", "/product/**")
                         .permitAll()
                         // Role admin

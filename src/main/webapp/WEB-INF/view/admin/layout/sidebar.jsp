@@ -9,15 +9,15 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard
                 </a>
-                <a class="nav-link" href="admin/user">
+                <a class="nav-link" href="<c:url value='/admin/user'/>">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     User
                 </a>
-                <a class="nav-link" href="admin/product">
+                <a class="nav-link" href="<c:url value='/admin/product'/>">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Product
                 </a>
-                <a class="nav-link" href="admin/oder">
+                <a class="nav-link" href="<c:url value='/admin/oder'/>">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Oder
                 </a>
