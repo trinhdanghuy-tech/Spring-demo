@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 import vn.trinhdanghuy.laptopvn.domain.Product;
 import vn.trinhdanghuy.laptopvn.services.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class HomePageController {
@@ -19,7 +20,7 @@ public class HomePageController {
     }
 
     @GetMapping("/")
-    public String getHomePage(Model model) {
+    public String getHomePage(Model model, HttpServletRequest request) {
         List<Product> products = this.productService.getAllProducts();
         model.addAttribute("products", products);
         return "client/home/show";

@@ -58,7 +58,7 @@
                                         <img src="https://ui-avatars.com/api/?name=${pageContext.request.userPrincipal.name}&background=random&color=fff" alt="" class="rounded-circle" style="width: 30px; height: 30px;">
                                     </li>
                                     <div class="text-center my-3">
-                                        <p class="mb-0"> Xin chào, <b>${pageContext.request.userPrincipal.name}</b></p>
+                                        <p class="mb-0"> Xin chào, <b>${sessionScope.fullName}</b></p>
                                     </div>
                                     <li><a class="dropdown-item py-2" href="#"><i class="bi bi-person me-2"></i>Tài khoản</a></li>
                                     <li><a class="dropdown-item py-2" href="#"><i class="bi bi-bag me-2"></i>Đơn hàng</a></li>

@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.DefaultRedirectStrategy;
@@ -18,9 +19,14 @@ import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.WebAttributes;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
+import vn.trinhdanghuy.laptopvn.services.UserService;
 
 @Component
 public class CustomSuccessHandler implements AuthenticationSuccessHandler {
+
+    @Autowired
+    private UserService userService;
+
     protected String determineTargetUrl(final Authentication authentication) {
         Map<String, String> roleTargetUrlMap = new HashMap<>();
         roleTargetUrlMap.put("ROLE_ADMIN", "/admin");
@@ -40,12 +46,13 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         return "/";
     }
 
-    protected void clearAuthenticationAttributes(HttpServletRequest request) {
+    protected void clearAuthenticationAttributes(HttpServletRequest request, Authentication authentication) {
         HttpSession session = request.getSession(false);
         if (session == null) {
             return;
         }
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
+        session.setAttribute("user", userService.findByUsername(authentication.getName()));
     }
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
@@ -59,6 +66,6 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             return;
         }
         redirectStrategy.sendRedirect(request, response, targetUrl);
-        clearAuthenticationAttributes(request);
+        clearAuthenticationAttributes(request, authentication);
     }
 }
