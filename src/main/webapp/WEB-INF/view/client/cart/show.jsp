@@ -61,7 +61,30 @@
                                     <!-- Product Info -->
                                     <div class="flex-grow-1">
                                         <h6 class="fw-bold mb-1" style="color: var(--text-main);">${item.name}</h6>
-                                        <div class="text-muted small mb-2">Số lượng: ${item.quantity}</div>
+                                        <div class="d-flex align-items-center mb-3">
+                                            <span class="text-muted small me-3">Số lượng:</span>
+                                            <div class="d-flex align-items-center bg-light rounded-pill px-2 py-1 border shadow-sm">
+                                                <form action="/cart/update-quantity" method="post" class="m-0 d-inline">
+                                                    <input type="hidden" name="productId" value="${item.productId}" />
+                                                    <input type="hidden" name="change" value="-1" />
+                                                    <button type="submit" class="btn btn-sm btn-link text-dark p-0 border-0" 
+                                                        style="text-decoration: none; width: 24px; height: 24px;"
+                                                        title="Giảm số lượng">
+                                                        <i class="bi bi-dash"></i>
+                                                    </button>
+                                                </form>
+                                                <span class="px-3 fw-bold text-dark" style="min-width: 40px; text-align: center;">${item.quantity}</span>
+                                                <form action="/cart/update-quantity" method="post" class="m-0 d-inline">
+                                                    <input type="hidden" name="productId" value="${item.productId}" />
+                                                    <input type="hidden" name="change" value="1" />
+                                                    <button type="submit" class="btn btn-sm btn-link text-dark p-0 border-0" 
+                                                        style="text-decoration: none; width: 24px; height: 24px;"
+                                                        title="Tăng số lượng">
+                                                        <i class="bi bi-plus"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
                                         <div class="fw-bold" style="color: var(--accent-color); font-size: 1.1rem;">
                                             <fmt:formatNumber type="number" value="${item.subTotal}" />₫
                                         </div>

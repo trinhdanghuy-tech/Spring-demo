@@ -98,4 +98,18 @@ public class CartController {
         }
         return "redirect:/cart";
     }
+
+    @PostMapping("/cart/update-quantity")
+    public String updateQuantity(@RequestParam("productId") long productId,
+            @RequestParam("change") long change,
+            HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Cart cart = (Cart) session.getAttribute("cart");
+        if (cart != null) {
+            cart.updateItemQuantity(productId, change);
+            session.setAttribute("cart", cart);
+            session.setAttribute("cartTotal", cart.getTotalQuantity());
+        }
+        return "redirect:/cart";
+    }
 }

@@ -25,6 +25,20 @@ public class Cart implements Serializable {
         items.removeIf(item -> item.getProductId() == productId);
     }
 
+    public void updateItemQuantity(long productId, long change) {
+        for (CartDetail item : items) {
+            if (item.getProductId() == productId) {
+                long newQuantity = item.getQuantity() + change;
+                if (newQuantity <= 0) {
+                    this.removeItem(productId);
+                } else {
+                    item.setQuantity(newQuantity);
+                }
+                return;
+            }
+        }
+    }
+
     public long getTotalQuantity() {
         long total = 0;
         for (CartDetail item : items) {
