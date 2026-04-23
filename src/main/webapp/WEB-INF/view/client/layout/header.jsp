@@ -61,7 +61,7 @@
                                         <p class="mb-0"> Xin chào, <b>${sessionScope.fullName}</b></p>
                                     </div>
                                     <li><a class="dropdown-item py-2" href="#"><i class="bi bi-person me-2"></i>Tài khoản</a></li>
-                                    <li><a class="dropdown-item py-2" href="#"><i class="bi bi-bag me-2"></i>Đơn hàng</a></li>
+                                    <li><a class="dropdown-item py-2" href="/my-orders"><i class="bi bi-bag me-2"></i>Đơn hàng</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form action="/logout" method="post">
