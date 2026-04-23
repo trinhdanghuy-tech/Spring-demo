@@ -1,164 +1,105 @@
-﻿<%@page contentType="text/html" pageEncoding="UTF-8" %>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <!DOCTYPE html>
-        <html lang="en">
-
-        <head>
-            <meta charset="utf-8" />
-            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-            <meta name="description" content="" />
-            <meta name="author" content="" />
-            <title>Product Page</title>
-            <link href="/css/styles.css" rel="stylesheet" />
-            <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-        </head>
-
-        <body class="sb-nav-fixed">
-            <jsp:include page="../layout/header.jsp" />
-            <div id="layoutSidenav">
-                <div id="layoutSidenav_nav">
-                    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                        <div class="sb-sidenav-menu">
-                            <div class="nav">
-                                <div class="sb-sidenav-menu-heading">Core</div>
-                                <a class="nav-link" href="index.html">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                    Dashboard
-                                </a>
-                                <a class="nav-link" href="admin/user">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                    User
-                                </a>
-                                <a class="nav-link" href="admin/oder">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                    Oder
-                                </a>
-                                <a class="nav-link" href="admin/product">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                    Product
-                                </a>
-                                <div class="sb-sidenav-menu-heading">Interface</div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseLayouts" aria-expanded="false"
-                                    aria-controls="collapseLayouts">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                    Layouts
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne"
-                                    data-bs-parent="#sidenavAccordion">
-                                    <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                        <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                                    </nav>
-                                </div>
-                                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                    data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                    Pages
-                                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                                </a>
-                                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                                    data-bs-parent="#sidenavAccordion">
-                                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                            data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                            aria-controls="pagesCollapseAuth">
-                                            Authentication
-                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i>
-                                            </div>
-                                        </a>
-                                        <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                            data-bs-parent="#sidenavAccordionPages">
-                                            <nav class="sb-sidenav-menu-nested nav">
-                                                <a class="nav-link" href="login.html">Login</a>
-                                                <a class="nav-link" href="register.html">Register</a>
-                                                <a class="nav-link" href="password.html">Forgot Password</a>
-                                            </nav>
-                                        </div>
-                                        <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                            data-bs-target="#pagesCollapseError" aria-expanded="false"
-                                            aria-controls="pagesCollapseError">
-                                            Error
-                                            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i>
-                                            </div>
-                                        </a>
-                                        <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                            data-bs-parent="#sidenavAccordionPages">
-                                            <nav class="sb-sidenav-menu-nested nav">
-                                                <a class="nav-link" href="401.html">401 Page</a>
-                                                <a class="nav-link" href="404.html">404 Page</a>
-                                                <a class="nav-link" href="500.html">500 Page</a>
-                                            </nav>
-                                        </div>
-                                    </nav>
-                                </div>
-                                <div class="sb-sidenav-menu-heading">Addons</div>
-                                <a class="nav-link" href="charts.html">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                    Charts
-                                </a>
-                                <a class="nav-link" href="tables.html">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                    Tables
-                                </a>
-                            </div>
-                        </div>
-                        <div class="sb-sidenav-footer">
-                            <div class="small">Logged in as:</div>
-                            Start Bootstrap
-                        </div>
-                    </nav>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Product Management</title>
+    <link href="/css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+</head>
+<body class="sb-nav-fixed">
+<jsp:include page="../layout/header.jsp"/>
+<div id="layoutSidenav">
+    <jsp:include page="../layout/sidebar.jsp"/>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4 admin-page-shell">
+                <div class="admin-page-head">
+                    <div>
+                        <span class="admin-page-kicker">Product Management</span>
+                        <h1>Quản lý sản phẩm</h1>
+                        <p>Kiểm soát danh mục, giá bán, tồn kho và hiệu suất bán hàng từ một bảng điều hành thống nhất.</p>
+                    </div>
+                    <a class="btn admin-btn-primary" href="/admin/product/create">
+                        <i class="fas fa-plus-circle me-2"></i>Thêm sản phẩm
+                    </a>
                 </div>
-                <jsp:include page="../layout/sidebar.jsp" />
-                <div id="layoutSidenav_content">
-                    <main>
-                        <div class="container-fluid px-4">
-                            <h1>Manager Products</h1>
-                            <ol class="breadcrumb mb-4">
-                                <li class="breadcrumb-item"><a href="/admin">Dasboard</a></li>
-                                <li class="breadcrumb-item active">Products</li>
-                            </ol>
-                            <div>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h2>Table Products</h2>
-                                    <a class="btn btn-primary" href="/admin/product/create" role="button">Create Product</a>
-                                </div>
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Factory</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach var="product" items="${products}">
-                                            <tr>
-                                                <td>${product.id}</td>
-                                                <td>${product.name}</td>
-                                                <td>${product.price}</td>
-                                                <td>${product.factory}</td>
-                                                <td>
-                                                    <a class="btn btn-primary" href="/admin/product/edit/${product.id}" role="button">Edit</a>
-                                                    <a class="btn btn-danger" href="/admin/product/delete/${product.id}" role="button">Delete</a>
-                                                </td>
-                                            </tr>
-                                        </c:forEach>
-                                    </tbody>
-                                </table>
-                            </div>
+
+                <div class="admin-content-card">
+                    <div class="admin-section-head">
+                        <div>
+                            <h2>Danh sách sản phẩm</h2>
+                            <p>${products.size()} sản phẩm đang được quản lý.</p>
                         </div>
-                    </main>
-                    <jsp:include page="../layout/footer.jsp" />
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table align-middle admin-table admin-table-rich mb-0">
+                            <thead>
+                            <tr>
+                                <th>Sản phẩm</th>
+                                <th>Factory</th>
+                                <th>Target</th>
+                                <th>Giá</th>
+                                <th>Tồn kho</th>
+                                <th>Đã bán</th>
+                                <th class="text-end">Hành động</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="product" items="${products}">
+                                <tr>
+                                    <td>
+                                        <div class="admin-product-cell">
+                                            <div class="admin-thumb">
+                                                <img src="/images/product/${product.image}" alt="${product.name}">
+                                            </div>
+                                            <div>
+                                                <div class="fw-semibold">${product.name}</div>
+                                                <div class="small text-muted">${product.shortDesc}</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>${product.factory}</td>
+                                    <td>${product.target}</td>
+                                    <td><fmt:formatNumber type="number" value="${product.price}" />₫</td>
+                                    <td>
+                                        <span class="admin-badge ${product.quantity == 0 ? 'admin-badge-red' : (product.quantity <= 5 ? 'admin-badge-amber' : 'admin-badge-blue')}">
+                                            ${product.quantity}
+                                        </span>
+                                    </td>
+                                    <td>${product.sold}</td>
+                                    <td class="text-end">
+                                        <div class="admin-action-group justify-content-end">
+                                            <a class="btn admin-btn-soft" href="/admin/product/edit/${product.id}">
+                                                <i class="fas fa-pen me-2"></i>Sửa
+                                            </a>
+                                            <a class="btn admin-btn-danger-soft" href="/admin/product/delete/${product.id}">
+                                                <i class="fas fa-trash-alt me-2"></i>Xóa
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            <c:if test="${empty products}">
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted py-5">Chưa có sản phẩm nào.</td>
+                                </tr>
+                            </c:if>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
-                crossorigin="anonymous"></script>
-            <script src="/js/scripts.js"></script>
-        </body>
-
-        </html>
+        </main>
+        <jsp:include page="../layout/footer.jsp"/>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+<script src="/js/scripts.js"></script>
+</body>
+</html>

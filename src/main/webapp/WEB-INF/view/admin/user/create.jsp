@@ -1,179 +1,118 @@
-﻿<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Manager User  Page</title>
+    <title>Create User</title>
     <link href="/css/styles.css" rel="stylesheet" />
-    <script
-            src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(() => {
-            const avatarFile = $("#avatarFile");
-            avatarFile.change(function (e) {
-                const imgURL = URL.createObjectURL(e.target.files[0]);
-                $("#avatarPreview").attr("src", imgURL);
-                $("#avatarPreview").css({ "display": "block" });
-            });
-        });
-    </script>
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
 <jsp:include page="../layout/header.jsp"/>
 <div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-            <div class="sb-sidenav-menu">
-                <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Dashboard
-                    </a>
-                    <a class="nav-link" href="admin/user">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        User
-                    </a>
-                    <a class="nav-link" href="admin/oder">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Oder
-                    </a>
-                    <a class="nav-link" href="admin/product">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Product
-                    </a>
-                    <div class="sb-sidenav-menu-heading">Interface</div>
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Layouts
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                        </nav>
-                    </div>
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                        Pages
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                Authentication
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">Login</a>
-                                    <a class="nav-link" href="register.html">Register</a>
-                                    <a class="nav-link" href="password.html">Forgot Password</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                Error
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="401.html">401 Page</a>
-                                    <a class="nav-link" href="404.html">404 Page</a>
-                                    <a class="nav-link" href="500.html">500 Page</a>
-                                </nav>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="sb-sidenav-menu-heading">Addons</div>
-                    <a class="nav-link" href="charts.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Charts
-                    </a>
-                    <a class="nav-link" href="tables.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                        Tables
-                    </a>
-                </div>
-            </div>
-            <div class="sb-sidenav-footer">
-                <div class="small">Logged in as:</div>
-                Start Bootstrap
-            </div>
-        </nav>
-    </div>
     <jsp:include page="../layout/sidebar.jsp"/>
     <div id="layoutSidenav_content">
         <main>
-            <div class="container-fluid px-4">
-                <h1>Manager Users</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="/admin">Dasboard</a></li>
-                    <li class="breadcrumb-item active">Users</li>
-                </ol>
-                <div class="mt-5">
-                    <div class="row">
-                        <div class="col-md-6 col-12 mx-auto">
-                            <h3>Create a user</h3>
-                            <br>
-                            <form:form modelAttribute="newUser" method="post" action="/admin/user/create"
-                                       class="row g-3" enctype="multipart/form-data">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <label for="inputEmail4" class="form-label">Email</label>
-                                        <form:input path="email" type="email" class="form-control" id="inputEmail4" placeholder="h@gmail.com"/>
-                                        <form:errors path="email" cssClass="text-danger" />
-                                    </div>
-                                    <div class="col-6">
-                                        <label for="inputPassword4" class="form-label">Password</label>
-                                        <form:password path="password" class="form-control" id="inputPassword4"/>
-                                        <form:errors path="password" cssClass="text-danger" />
-                                    </div>
+            <div class="container-fluid px-4 admin-page-shell">
+                <div class="admin-page-head">
+                    <div>
+                        <span class="admin-page-kicker">Create User</span>
+                        <h1>Tạo tài khoản mới</h1>
+                        <p>Thiết lập thông tin cơ bản, quyền truy cập và ảnh đại diện cho tài khoản quản trị hoặc khách hàng.</p>
+                    </div>
+                    <a class="btn admin-btn-secondary" href="/admin/user">
+                        <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách
+                    </a>
+                </div>
+
+                <div class="admin-form-card">
+                    <c:if test="${not empty error}">
+                        <div class="alert alert-warning rounded-4">${error}</div>
+                    </c:if>
+
+                    <form:form modelAttribute="newUser" method="post" action="/admin/user/create" class="row g-4" enctype="multipart/form-data">
+                        <div class="col-lg-8">
+                            <div class="admin-section-head mb-3">
+                                <div>
+                                    <h2>Thông tin tài khoản</h2>
+                                    <p>Các trường quan trọng để đăng nhập và quản lý hồ sơ.</p>
+                                </div>
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <form:input path="email" type="email" class="form-control admin-input" placeholder="admin@laptopvn.vn"/>
+                                    <form:errors path="email" cssClass="text-danger small mt-2 d-block" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Mật khẩu</label>
+                                    <form:password path="password" class="form-control admin-input" placeholder="Tối thiểu 6 ký tự"/>
+                                    <form:errors path="password" cssClass="text-danger small mt-2 d-block" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Họ và tên</label>
+                                    <form:input path="fullName" class="form-control admin-input" placeholder="Nguyễn Văn A"/>
+                                    <form:errors path="fullName" cssClass="text-danger small mt-2 d-block" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Số điện thoại</label>
+                                    <form:input path="phone" class="form-control admin-input" placeholder="0901234567"/>
+                                    <form:errors path="phone" cssClass="text-danger small mt-2 d-block" />
                                 </div>
                                 <div class="col-12">
-                                    <div class="col-5">
-                                        <label for="inputAddress" class="form-label">Address</label>
-                                        <form:input path="address" class="form-control" id="inputAddress" placeholder="1234 Main St"/>
-                                        <form:errors path="address" cssClass="text-danger" />
+                                    <label class="form-label">Địa chỉ</label>
+                                    <form:input path="address" class="form-control admin-input" placeholder="Số nhà, đường, quận/huyện, tỉnh/thành phố"/>
+                                    <form:errors path="address" cssClass="text-danger small mt-2 d-block" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="admin-side-card">
+                                <div class="admin-section-head mb-3">
+                                    <div>
+                                        <h2>Thiết lập thêm</h2>
+                                        <p>Phân quyền và ảnh đại diện.</p>
                                     </div>
-                                    <div class="col-5">
-                                        <label for="inputFullName" class="form-label">FullName</label>
-                                        <form:input path="fullName" class="form-control" id="inputFullName" placeholder="Conor McGregor"/>
-                                        <form:errors path="fullName" cssClass="text-danger" />
-                                    </div>
                                 </div>
-                                <div class="col-12">
-                                    <label for="inputPhone" class="form-label">Phone</label>
-                                    <form:input path="phone" class="form-control" id="inputPhone" placeholder="123456789"/>
-                                    <form:errors path="phone" cssClass="text-danger" />
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                    <label for="avatarFile" class="form-label">Avatar: </label>
-                                    <input class="form-control" type="file" id="avatarFile" name="huyhuyFile" accept=".jpg, .jpeg, .png">
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <img style="max-height: 250px; display: none" alt="avatar preview" id="avatarPreview">
-                                </div>
-                                <div class="mb-3 col-12 col-md-6">
-                                    <label class="form-label">Role: </label>
-                                    <form:select class="form-select" path="role.name">
+
+                                <div class="mb-3">
+                                    <label class="form-label">Vai trò</label>
+                                    <form:select class="form-select admin-input" path="role.name">
                                         <form:option value="ADMIN">Admin</form:option>
                                         <form:option value="USER">User</form:option>
                                     </form:select>
                                 </div>
-                                <div class="col-12 mb-5">
-                                    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+
+                                <div class="mb-3">
+                                    <label for="avatarFile" class="form-label">Avatar</label>
+                                    <input class="form-control admin-input" type="file" id="avatarFile" name="huyhuyFile" accept=".jpg, .jpeg, .png">
                                 </div>
-                            </form:form>
+
+                                <div class="admin-upload-preview">
+                                    <img alt="avatar preview" id="avatarPreview" style="display:none;">
+                                    <div id="avatarPlaceholder">
+                                        <i class="fas fa-image mb-2"></i>
+                                        <span>Xem trước ảnh đại diện</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+
+                        <div class="col-12">
+                            <div class="admin-form-actions">
+                                <a href="/admin/user" class="btn admin-btn-secondary">Hủy</a>
+                                <button type="submit" class="btn admin-btn-primary">
+                                    <i class="fas fa-save me-2"></i>Lưu tài khoản
+                                </button>
+                            </div>
+                        </div>
+                    </form:form>
                 </div>
             </div>
         </main>
@@ -182,6 +121,19 @@
 </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 <script src="/js/scripts.js"></script>
+<script>
+    const avatarFile = document.getElementById('avatarFile');
+    const avatarPreview = document.getElementById('avatarPreview');
+    const avatarPlaceholder = document.getElementById('avatarPlaceholder');
+    if (avatarFile) {
+        avatarFile.addEventListener('change', function(event) {
+            const file = event.target.files && event.target.files[0];
+            if (!file) return;
+            avatarPreview.src = URL.createObjectURL(file);
+            avatarPreview.style.display = 'block';
+            avatarPlaceholder.style.display = 'none';
+        });
+    }
+</script>
 </body>
 </html>
-

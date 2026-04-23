@@ -1,150 +1,103 @@
-﻿<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Manager User  Page</title>
+    <title>User Management</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
 <jsp:include page="../layout/header.jsp"/>
 <div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-            <div class="sb-sidenav-menu">
-                <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Dashboard
-                    </a>
-                    <a class="nav-link" href="admin/user">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        User
-                    </a>
-                    <a class="nav-link" href="admin/oder">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Oder
-                    </a>
-                    <a class="nav-link" href="admin/product">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Product
-                    </a>
-                    <div class="sb-sidenav-menu-heading">Interface</div>
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Layouts
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                        </nav>
-                    </div>
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                        Pages
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                Authentication
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">Login</a>
-                                    <a class="nav-link" href="register.html">Register</a>
-                                    <a class="nav-link" href="password.html">Forgot Password</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                Error
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="401.html">401 Page</a>
-                                    <a class="nav-link" href="404.html">404 Page</a>
-                                    <a class="nav-link" href="500.html">500 Page</a>
-                                </nav>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="sb-sidenav-menu-heading">Addons</div>
-                    <a class="nav-link" href="charts.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Charts
-                    </a>
-                    <a class="nav-link" href="tables.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                        Tables
-                    </a>
-                </div>
-            </div>
-            <div class="sb-sidenav-footer">
-                <div class="small">Logged in as:</div>
-                Start Bootstrap
-            </div>
-        </nav>
-    </div>
     <jsp:include page="../layout/sidebar.jsp"/>
     <div id="layoutSidenav_content">
         <main>
-            <div class="container-fluid px-4">
-                <h1>Manager Users</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="/admin">Dasboard</a></li>
-                    <li class="breadcrumb-item active">Users</li>
-                </ol>
-                <div class="row">
-                    <div class="col-12 mx-auto">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <h2>Table Users</h2>
-                            <a class="btn btn-primary" href="/admin/user/create" role="button">Create User</a>
+            <div class="container-fluid px-4 admin-page-shell">
+                <div class="admin-page-head">
+                    <div>
+                        <span class="admin-page-kicker">User Management</span>
+                        <h1>Quản lý tài khoản</h1>
+                        <p>Theo dõi danh sách người dùng, phân quyền nhanh và cập nhật thông tin khách hàng tập trung.</p>
+                    </div>
+                    <a class="btn admin-btn-primary" href="/admin/user/create">
+                        <i class="fas fa-user-plus me-2"></i>Tạo tài khoản
+                    </a>
+                </div>
+
+                <div class="admin-content-card">
+                    <div class="admin-section-head">
+                        <div>
+                            <h2>Danh sách người dùng</h2>
+                            <p>${users1.size()} tài khoản hiện có trong hệ thống.</p>
                         </div>
-                        <div class="cross"></div>
-                        <table class="table table-hover table-bordered">
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table align-middle admin-table admin-table-rich mb-0">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Action</th>
+                                <th>ID</th>
+                                <th>Người dùng</th>
+                                <th>Liên hệ</th>
+                                <th>Vai trò</th>
+                                <th>Địa chỉ</th>
+                                <th class="text-end">Hành động</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach items="${users1}" var="user">
                                 <tr>
-                                    <th scope="row">${user.id}</th>
-                                    <td>${user.fullName}</td>
-                                    <td>${user.email}</td>
+                                    <td>#${user.id}</td>
                                     <td>
-                                        <c:choose>
-                                            <c:when test="${not empty user.role}">
-                                                <span class="badge bg-primary">${user.role.name}</span>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <span class="badge bg-secondary">N/A</span>
-                                            </c:otherwise>
-                                        </c:choose>
+                                        <div class="admin-person-cell">
+                                            <div class="admin-avatar-mini">
+                                                <c:choose>
+                                                    <c:when test="${not empty user.avatar}">
+                                                        <img src="/images/avatar/${user.avatar}" alt="${user.fullName}">
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span>${fn:substring(user.fullName, 0, 1)}</span>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                            <div>
+                                                <div class="fw-semibold">${user.fullName}</div>
+                                                <div class="small text-muted">Mã user #${user.id}</div>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td>
-                                        <a href="/admin/user/update_user/${user.id}" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="/admin/user/delete_user/${user.id}" class="btn btn-danger btn-sm">Delete</a>
+                                        <div>${user.email}</div>
+                                        <div class="small text-muted">${empty user.phone ? 'Chưa có số điện thoại' : user.phone}</div>
+                                    </td>
+                                    <td>
+                                        <span class="admin-badge ${user.role.name == 'ADMIN' ? 'admin-badge-dark' : 'admin-badge-blue'}">
+                                            ${user.role.name}
+                                        </span>
+                                    </td>
+                                    <td>${empty user.address ? 'Chưa cập nhật' : user.address}</td>
+                                    <td class="text-end">
+                                        <div class="admin-action-group justify-content-end">
+                                            <a href="/admin/user/update_user/${user.id}" class="btn admin-btn-soft">
+                                                <i class="fas fa-pen me-2"></i>Sửa
+                                            </a>
+                                            <a href="/admin/user/delete_user/${user.id}" class="btn admin-btn-danger-soft">
+                                                <i class="fas fa-trash-alt me-2"></i>Xóa
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             </c:forEach>
-
+                            <c:if test="${empty users1}">
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted py-5">Chưa có người dùng nào trong hệ thống.</td>
+                                </tr>
+                            </c:if>
                             </tbody>
                         </table>
                     </div>
@@ -158,4 +111,3 @@
 <script src="/js/scripts.js"></script>
 </body>
 </html>
-

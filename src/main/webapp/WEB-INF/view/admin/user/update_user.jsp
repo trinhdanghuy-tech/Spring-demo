@@ -1,145 +1,95 @@
-﻿<%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <title>Manager User  Page</title>
+    <title>Update User</title>
     <link href="/css/styles.css" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
 <jsp:include page="../layout/header.jsp"/>
 <div id="layoutSidenav">
-    <div id="layoutSidenav_nav">
-        <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-            <div class="sb-sidenav-menu">
-                <div class="nav">
-                    <div class="sb-sidenav-menu-heading">Core</div>
-                    <a class="nav-link" href="index.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Dashboard
-                    </a>
-                    <a class="nav-link" href="admin/user">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        User
-                    </a>
-                    <a class="nav-link" href="admin/oder">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Oder
-                    </a>
-                    <a class="nav-link" href="admin/product">
-                        <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        Product
-                    </a>
-                    <div class="sb-sidenav-menu-heading">Interface</div>
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-                        <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        Layouts
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav">
-                            <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                            <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                        </nav>
-                    </div>
-                    <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
-                        <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                        Pages
-                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                    </a>
-                    <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-                        <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                Authentication
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="login.html">Login</a>
-                                    <a class="nav-link" href="register.html">Register</a>
-                                    <a class="nav-link" href="password.html">Forgot Password</a>
-                                </nav>
-                            </div>
-                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                Error
-                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
-                            </a>
-                            <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
-                                <nav class="sb-sidenav-menu-nested nav">
-                                    <a class="nav-link" href="401.html">401 Page</a>
-                                    <a class="nav-link" href="404.html">404 Page</a>
-                                    <a class="nav-link" href="500.html">500 Page</a>
-                                </nav>
-                            </div>
-                        </nav>
-                    </div>
-                    <div class="sb-sidenav-menu-heading">Addons</div>
-                    <a class="nav-link" href="charts.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                        Charts
-                    </a>
-                    <a class="nav-link" href="tables.html">
-                        <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                        Tables
-                    </a>
-                </div>
-            </div>
-            <div class="sb-sidenav-footer">
-                <div class="small">Logged in as:</div>
-                Start Bootstrap
-            </div>
-        </nav>
-    </div>
     <jsp:include page="../layout/sidebar.jsp"/>
     <div id="layoutSidenav_content">
         <main>
-            <div class="container-fluid px-4">
-                <h1>Manager Users</h1>
-                <ol class="breadcrumb mb-4">
-                    <li class="breadcrumb-item"><a href="/admin">Dasboard</a></li>
-                    <li class="breadcrumb-item active">Users</li>
-                </ol>
-                <div class="mt-5">
-                    <div class="row">
-                        <div class="col-md-6 col-12 mx-auto">
-                            <h3>Update User</h3>
-                            <c:if test="${not empty error}">
-                                <div class="alert alert-warning">${error}</div>
-                            </c:if>
-                            <br>
-                            <form:form modelAttribute="newUser" method="post" action="/admin/user/update_user">
-                                <div class="mb-3" style="display: none">
-                                    <label>ID</label>
-                                    <input type="text" name="id" value="${newUser.id}" class="form-control"/>
-                                    <input type="hidden" name="password" value="${newUser.password}" />
-                                </div>
-                                <div class="mb-3">
-                                    <label>Email</label>
-                                    <form:input path="email" class="form-control" readonly="true"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label>Full Name</label>
-                                    <form:input path="fullName" class="form-control"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label>Address</label>
-                                    <form:input path="address" class="form-control"/>
-                                </div>
-                                <div class="mb-3">
-                                    <label>Phone</label>
-                                    <form:input path="phone" class="form-control"/>
-                                </div>
-                                <button type="submit" class="btn btn-primary">Update</button>
-                            </form:form>
-                        </div>
+            <div class="container-fluid px-4 admin-page-shell">
+                <div class="admin-page-head">
+                    <div>
+                        <span class="admin-page-kicker">Update User</span>
+                        <h1>Cập nhật người dùng</h1>
+                        <p>Điều chỉnh thông tin hồ sơ để giữ dữ liệu khách hàng và quản trị viên luôn chính xác.</p>
                     </div>
+                    <a class="btn admin-btn-secondary" href="/admin/user">
+                        <i class="fas fa-arrow-left me-2"></i>Quay lại danh sách
+                    </a>
+                </div>
+
+                <div class="admin-form-card">
+                    <c:if test="${not empty error}">
+                        <div class="alert alert-warning rounded-4">${error}</div>
+                    </c:if>
+
+                    <form:form modelAttribute="newUser" method="post" action="/admin/user/update_user" class="row g-4">
+                        <form:hidden path="id"/>
+                        <input type="hidden" name="password" value="${newUser.password}" />
+
+                        <div class="col-lg-8">
+                            <div class="admin-section-head mb-3">
+                                <div>
+                                    <h2>Thông tin hồ sơ</h2>
+                                    <p>Email được giữ cố định để tránh xung đột đăng nhập.</p>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Email</label>
+                                    <form:input path="email" class="form-control admin-input" readonly="true"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Họ và tên</label>
+                                    <form:input path="fullName" class="form-control admin-input"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Số điện thoại</label>
+                                    <form:input path="phone" class="form-control admin-input"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Địa chỉ</label>
+                                    <form:input path="address" class="form-control admin-input"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="admin-side-card">
+                                <div class="admin-section-head mb-3">
+                                    <div>
+                                        <h2>Thông tin hiện tại</h2>
+                                        <p>Tóm tắt nhanh hồ sơ đang chỉnh sửa.</p>
+                                    </div>
+                                </div>
+                                <div class="admin-summary-list">
+                                    <div><span>ID</span><strong>#${newUser.id}</strong></div>
+                                    <div><span>Role</span><strong>${newUser.role.name}</strong></div>
+                                    <div><span>Email</span><strong>${newUser.email}</strong></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="admin-form-actions">
+                                <a href="/admin/user" class="btn admin-btn-secondary">Hủy</a>
+                                <button type="submit" class="btn admin-btn-primary">
+                                    <i class="fas fa-save me-2"></i>Lưu thay đổi
+                                </button>
+                            </div>
+                        </div>
+                    </form:form>
                 </div>
             </div>
         </main>
@@ -150,4 +100,3 @@
 <script src="/js/scripts.js"></script>
 </body>
 </html>
-
