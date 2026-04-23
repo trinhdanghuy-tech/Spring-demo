@@ -24,8 +24,12 @@ import vn.trinhdanghuy.laptopvn.services.UserService;
 @Component
 public class CustomSuccessHandler implements AuthenticationSuccessHandler {
 
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public CustomSuccessHandler(UserService userService) {
+        this.userService = userService;
+    }
 
     protected String determineTargetUrl(final Authentication authentication) {
         Map<String, String> roleTargetUrlMap = new HashMap<>();
@@ -46,13 +50,20 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
         return "/";
     }
 
-    protected void clearAuthenticationAttributes(HttpServletRequest request, Authentication authentication) {
-        HttpSession session = request.getSession(false);
-        if (session == null) {
-            return;
-        }
+    protected void syncSessionAttributes(HttpServletRequest request, Authentication authentication) {
+        HttpSession session = request.getSession(true);
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
-        session.setAttribute("user", userService.getUserByEmail(authentication.getName()));
+
+        vn.trinhdanghuy.laptopvn.domain.User user = userService.getUserByEmail(authentication.getName());
+        if (user != null) {
+            session.setAttribute("fullName", user.getFullName());
+            session.setAttribute("email", user.getEmail());
+            session.setAttribute("userId", user.getId());
+        } else {
+            session.removeAttribute("fullName");
+            session.removeAttribute("email");
+            session.removeAttribute("userId");
+        }
     }
 
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
@@ -62,10 +73,10 @@ public class CustomSuccessHandler implements AuthenticationSuccessHandler {
             Authentication authentication)
             throws IOException, ServletException {
         final String targetUrl = determineTargetUrl(authentication);
+        syncSessionAttributes(request, authentication);
         if (response.isCommitted()) {
             return;
         }
         redirectStrategy.sendRedirect(request, response, targetUrl);
-        clearAuthenticationAttributes(request, authentication);
     }
 }

@@ -221,7 +221,7 @@
 
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="remember">
+                        <input class="form-check-input" type="checkbox" id="remember" name="remember-me">
                         <label class="form-check-label text-muted small" for="remember">Ghi nhớ đăng nhập</label>
                     </div>
                     <a href="#" class="text-decoration-none small fw-semibold" style="color: var(--accent-color);">Quên mật khẩu?</a>

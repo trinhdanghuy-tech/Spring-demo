@@ -32,8 +32,8 @@ public class SecurityConfiguration {
         }
 
         @Bean
-        public CustomSuccessHandler customSuccessHandler() {
-                return new CustomSuccessHandler();
+        public CustomSuccessHandler customSuccessHandler(UserService userService) {
+                return new CustomSuccessHandler(userService);
         }
 
         @Bean
@@ -50,13 +50,12 @@ public class SecurityConfiguration {
         @Bean
         public SpringSessionRememberMeServices rememberMeServices() {
                 SpringSessionRememberMeServices rememberMeServices = new SpringSessionRememberMeServices();
-                // optionally customize
-                rememberMeServices.setAlwaysRemember(true);
                 return rememberMeServices;
         }
 
         @Bean
-        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        public SecurityFilterChain securityFilterChain(HttpSecurity http,
+                        CustomSuccessHandler customSuccessHandler) throws Exception {
                 http
                                 .csrf(csrf -> csrf.disable())
                                 .authorizeHttpRequests(auth -> auth
@@ -80,11 +79,12 @@ public class SecurityConfiguration {
                                                 .maximumSessions(1)
                                                 .maxSessionsPreventsLogin(false))
                                 .rememberMe(rememberMe -> rememberMe
+                                                .rememberMeParameter("remember-me")
                                                 .rememberMeServices(rememberMeServices()))
                                 .formLogin(form -> form
                                                 .loginPage("/login")
                                                 .loginProcessingUrl("/login")
-                                                .successHandler(customSuccessHandler())
+                                                .successHandler(customSuccessHandler)
                                                 .failureUrl("/login?error")
                                                 .permitAll())
                                 .exceptionHandling(ex -> ex.accessDeniedPage(
@@ -94,7 +94,7 @@ public class SecurityConfiguration {
                                                 .logoutSuccessUrl("/login?logout")
                                                 .invalidateHttpSession(true)
                                                 .clearAuthentication(true)
-                                                .deleteCookies("JSESSIONID")
+                                                .deleteCookies("JSESSIONID", "SESSION")
                                                 .permitAll());
                 return http.build();
         }
